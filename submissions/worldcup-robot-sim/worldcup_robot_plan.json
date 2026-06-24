@@ -1,0 +1,44 @@
+[
+  {
+    "step": 1,
+    "match": "波黑vs卡塔尔",
+    "score_signal": "主判断 2-0（9.0%）；打穿脚本 3-1（7.1%）；保守脚本 2-1（11.0%）",
+    "robot_tactic": "wide overload toward the favored side",
+    "market_signal": "观察：卡塔尔 +1.25（赢盘50.0%，走水13.0%，赔率2.01，EV+13.5%，让球回测提高门槛）"
+  },
+  {
+    "step": 2,
+    "match": "瑞士vs加拿大",
+    "score_signal": "1-1（11.1%）；1-0（8.7%）；进攻情景 2-1（8.3%）",
+    "robot_tactic": "balanced press with controlled transition",
+    "market_signal": "加拿大 +0（赢盘35.4%，走水25.9%，赔率2.34，EV+8.8%）"
+  },
+  {
+    "step": 3,
+    "match": "苏格兰vs巴西",
+    "score_signal": "主判断 0-2（10.8%）；打穿脚本 1-3（6.6%）；保守脚本 0-1（12.7%）",
+    "robot_tactic": "wide overload toward the favored side",
+    "market_signal": "苏格兰 +1.25（赢盘51.4%，走水14.4%，赔率2.12，EV+23.4%）"
+  },
+  {
+    "step": 4,
+    "match": "摩洛哥vs海地",
+    "score_signal": "主判断 2-0（11.0%）；打穿脚本 3-0（7.1%）；保守脚本 1-0（11.6%）",
+    "robot_tactic": "wide overload toward the favored side",
+    "market_signal": "观察：海地 +2（赢盘60.8%，走水20.2%，赔率1.92，EV+37.0%）"
+  },
+  {
+    "step": 5,
+    "match": "捷克vs墨西哥",
+    "score_signal": "0-1（10.5%）；1-1（10.4%）；进攻情景 1-2（9.1%）",
+    "robot_tactic": "compact defensive shape",
+    "market_signal": "不推荐：墨西哥 -1.5（赢盘28.7%，赔率3.60，EV+3.3%，赔率过高，波动大）"
+  },
+  {
+    "step": 6,
+    "match": "南非vs韩国",
+    "score_signal": "0-1（12.3%）；1-2（10.7%）",
+    "robot_tactic": "compact defensive shape",
+    "market_signal": "不推荐：南非 +0.75（赢盘43.5%，走水13.5%，赔率2.04，EV+2.0%）"
+  }
+]
