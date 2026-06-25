@@ -1,0 +1,34 @@
+<mujoco model="worldcup_tactical_ball_drill">
+  <option timestep="0.01" gravity="0 0 -9.81"/>
+  <visual>
+    <global offwidth="800" offheight="528"/>
+  </visual>
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".12 .34 .18" rgb2=".08 .24 .12" width="512" height="512"/>
+    <material name="field" texture="grid" texrepeat="8 4"/>
+    <material name="robot_mat" rgba=".1 .35 1 1"/>
+    <material name="ball_mat" rgba="1 .85 .1 1"/>
+    <material name="goal_mat" rgba=".1 1 .25 .45"/>
+  </asset>
+  <worldbody>
+    <light pos="0 0 5" dir="0 0 -1"/>
+    <camera name="overview" pos="0 -5.2 4.2" xyaxes="1 0 0 0 .62 .78"/>
+    <geom name="field" type="plane" size="3.2 1.8 .05" material="field" friction="1.2 .02 .001"/>
+    <geom name="goal_zone" type="box" pos="2.55 0 .02" size=".24 .42 .02" material="goal_mat" contype="0" conaffinity="0"/>
+    <geom name="left_wall" type="box" pos="0 1.75 .15" size="3.1 .05 .15" rgba=".8 .8 .8 1"/>
+    <geom name="right_wall" type="box" pos="0 -1.75 .15" size="3.1 .05 .15" rgba=".8 .8 .8 1"/>
+    <body name="robot" pos="0 0 .18">
+      <joint name="robot_x" type="slide" axis="1 0 0" damping=".2"/>
+      <joint name="robot_y" type="slide" axis="0 1 0" damping=".2"/>
+      <geom name="robot_body" type="sphere" size=".22" material="robot_mat" mass="1.5" friction=".45 .02 .001"/>
+    </body>
+    <body name="ball" pos="0 0 .16">
+      <freejoint name="ball_free"/>
+      <geom name="ball_geom" type="sphere" size=".16" material="ball_mat" mass=".18" friction=".35 .02 .001"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor joint="robot_x" gear="1" ctrllimited="true" ctrlrange="-1200 1200"/>
+    <motor joint="robot_y" gear="1" ctrllimited="true" ctrlrange="-1200 1200"/>
+  </actuator>
+</mujoco>

@@ -1,43 +1,47 @@
-# WorldCup Robot Simulation
+# WorldCup Tactical Ball Drill
 
 ## Project name
 
-WorldCup Robot Simulation
+WorldCup Tactical Ball Drill
 
 ## Robot platform
 
-FF Master humanoid model from `assets/Master/scene.xml`.
+A MuJoCo planar robot that physically pushes a soccer ball into a target zone.
 
 ## Task goal
 
-Use the local World Cup prediction model output as a tactical signal source, then generate a MuJoCo humanoid demo and trajectory plan from those rows.
+Use World Cup prediction rows as tactical inputs, then run a closed-loop MuJoCo ball drill. The robot reads live robot and ball positions, selects a tactic-specific target zone, and pushes the ball into that zone.
 
 ## Technical approach
 
-The submission keeps the prediction model outside this repository and reads its latest CSV output when available:
+`worldcup_sample.csv` provides reproducible prediction rows. Each row maps to a tactic:
 
-`F:\世界杯预测模型\results\2026-06-25\每日推荐表.csv`
+- high-tempo press
+- direct wide attack
+- compact recovery
+- balanced transition
 
-If that local file is not present, the script uses the included `worldcup_sample.csv` so judges can still reproduce the MuJoCo demo.
+The MuJoCo scene in `worldcup_ball_drill.xml` contains a field, robot, ball, walls, and target zone. `run_worldcup_robot_sim.py` uses a PD feedback controller over live MuJoCo joint and ball state. It runs 20 trials and records success rate, final error, control force, ball position, and robot position.
 
 ## Core features
 
-- Converts match score signals into robot tactics.
-- Runs the official FF Master MuJoCo model.
-- Produces `demo.mp4`, `worldcup_robot_plan.json`, and `worldcup_robot_trajectory.json`.
-- Includes a bundled sample CSV for reproducible judging.
+- Closed-loop position feedback control.
+- Real MuJoCo ball contact and target-zone task.
+- 20-trial evaluation with success rate.
+- Tactic selection from prediction CSV.
+- Reproducible demo video and JSON trajectory log.
 
 ## Highlights
 
-This is a lightweight bridge from an existing sports prediction pipeline to an embodied simulation task: prediction rows become tactical movement labels, then the humanoid demo records the resulting plan beside a MuJoCo-rendered video.
+The previous version only visualized a prediction label. This version makes the prediction change a physical task parameter and measures whether the robot actually completes the drill in MuJoCo.
 
 ## Current limitations
 
-The robot motion is a deterministic visualization, not a closed-loop soccer controller.
+The controller is a simple PD policy, not a learned soccer policy.
 
 ## Future improvements
 
-Map each tactic to distinct joint trajectories, add a ball and goal scene, and connect live prediction updates to a multi-agent robot drill.
+Add multi-robot defenders, learned policies, and live prediction updates during the drill.
 
 ## How to run
 
@@ -47,12 +51,6 @@ From the repository root:
 python -m pip install -r requirements.txt
 python submissions/worldcup-robot-sim/run_worldcup_robot_sim.py --self-check
 python submissions/worldcup-robot-sim/run_worldcup_robot_sim.py
-```
-
-To force a specific prediction CSV:
-
-```bash
-python submissions/worldcup-robot-sim/run_worldcup_robot_sim.py --predictions path/to/predictions.csv
 ```
 
 ## Demo video

@@ -4,14 +4,14 @@ Registration UUID: `012fc52c-a40a-4100-a692-2b3641971903`
 
 ## Project Summary
 
-- **Project name**: WorldCup Robot Simulation
-- **Robot platform**: FF Master humanoid MuJoCo model
-- **Task goal**: Convert World Cup prediction model outputs into a robot tactical simulation demo.
-- **Technical approach**: Read prediction CSV rows, map score signals to tactical labels, run the official FF Master MuJoCo demo, and save the plan plus trajectory metadata.
-- **Core features**: CSV-to-tactic conversion, MuJoCo video generation, JSON plan output, bundled sample data.
-- **Highlights**: Bridges an existing World Cup prediction model into an embodied-AI simulation submission.
-- **Current limitations**: Deterministic visualization rather than a closed-loop soccer controller.
-- **Future improvements**: Add ball/goal assets, tactic-specific joint control, and multi-agent drills.
+- **Project name**: WorldCup Tactical Ball Drill
+- **Robot platform**: MuJoCo planar robot with physical ball contact
+- **Task goal**: Convert World Cup prediction rows into tactic-specific target zones, then use closed-loop control to push a ball into the selected zone.
+- **Technical approach**: Prediction CSV rows select tactics. A PD feedback controller reads live robot and ball position from MuJoCo, drives the robot behind the ball, and pushes it through the target zone.
+- **Core features**: Closed-loop position feedback, MuJoCo contact physics, 20-trial success-rate evaluation, JSON trajectory logging, demo video.
+- **Highlights**: Upgraded from label animation to a measured physical task with 20/20 successful trials.
+- **Current limitations**: Simple PD policy rather than a learned soccer policy.
+- **Future improvements**: Add defenders, multi-robot coordination, and learned tactical policies.
 
 ## How to Run
 
@@ -23,7 +23,7 @@ python submissions/worldcup-robot-sim/run_worldcup_robot_sim.py
 
 ## Demo Video
 
-- [x] Demo video is included in the submission folder, or
+- [x] Demo video is included in the submission folder
 - [ ] Demo video link:
 
 ## Checklist
