@@ -4,14 +4,14 @@ Registration UUID: `012fc52c-a40a-4100-a692-2b3641971903`
 
 ## Project Summary
 
-- **Project name**: WorldCup Tactical Ball Drill
+- **Project name**: WorldCup MPC Recovery Soccer Lab
 - **Robot platform**: MuJoCo planar robot with physical ball contact
-- **Task goal**: Convert World Cup prediction rows into tactic-specific target zones, then use closed-loop control to push a ball into the selected zone.
-- **Technical approach**: Prediction CSV rows select tactics. A PD feedback controller reads live robot and ball position from MuJoCo, drives the robot behind the ball, and pushes it through the target zone.
-- **Core features**: Closed-loop position feedback, MuJoCo contact physics, 20-trial success-rate evaluation, JSON trajectory logging, demo video.
-- **Highlights**: Upgraded from label animation to a measured physical task with 20/20 successful trials.
-- **Current limitations**: Simple PD policy rather than a learned soccer policy.
-- **Future improvements**: Add defenders, multi-robot coordination, and learned tactical policies.
+- **Task goal**: Convert World Cup prediction rows into tactic-specific target zones, then use closed-loop control to push a ball into the selected zone without object teleportation.
+- **Technical approach**: Prediction CSV rows select tactics. A one-step receding-horizon recovery policy reads live robot and ball state from MuJoCo, chooses approach/recovery/push/finish modes, and executes them through PD motor control.
+- **Core features**: Closed-loop feedback, MuJoCo contact physics, 96-trial evaluation, 32 lateral disturbance recovery tests, JSON trajectory logging, demo video.
+- **Highlights**: 96/96 successful trials, 32/32 disturbance recoveries, mean final ball-goal error 0.4207 m.
+- **Current limitations**: Compact hand-built recovery policy rather than a learned soccer policy.
+- **Future improvements**: Add defenders, multi-robot passing, and learned tactical policies.
 
 ## How to Run
 
